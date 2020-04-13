@@ -16,9 +16,11 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
-import { COLORS } from '@backstage/theme';
+import { BackstageTheme } from '@backstage/theme';
 import { wrapInThemedTestApp } from '@backstage/test-utils';
 import CircleProgress, { getProgressColor } from './CircleProgress';
+
+const { palette } = BackstageTheme;
 
 describe('<CircleProgress />', () => {
   it('renders without exploding', () => {
@@ -54,15 +56,15 @@ describe('<CircleProgress />', () => {
 
   it('colors the progress correctly', () => {
     expect(getProgressColor()).toBe('#ddd');
-    expect(getProgressColor(10)).toBe(COLORS.STATUS.ERROR);
-    expect(getProgressColor(50)).toBe(COLORS.STATUS.WARNING);
-    expect(getProgressColor(90)).toBe(COLORS.STATUS.OK);
+    expect(getProgressColor(10)).toBe(palette.status.error);
+    expect(getProgressColor(50)).toBe(palette.status.warning);
+    expect(getProgressColor(90)).toBe(palette.status.ok);
   });
 
   it('colors the inverse progress correctly', () => {
     expect(getProgressColor()).toBe('#ddd');
-    expect(getProgressColor(10, true)).toBe(COLORS.STATUS.OK);
-    expect(getProgressColor(50, true)).toBe(COLORS.STATUS.WARNING);
-    expect(getProgressColor(90, true)).toBe(COLORS.STATUS.ERROR);
+    expect(getProgressColor(10, true)).toBe(palette.status.ok);
+    expect(getProgressColor(50, true)).toBe(palette.status.warning);
+    expect(getProgressColor(90, true)).toBe(palette.status.error);
   });
 });

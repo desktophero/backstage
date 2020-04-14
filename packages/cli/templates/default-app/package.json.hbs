@@ -3,9 +3,11 @@
   "private": true,
   "scripts": {
     "start": "yarn build && yarn workspace app start",
-    "build": "lerna run build",
+    "build": "lerna run build --ignore=plugin-*",
+    "prebuild": "lerna run build --scope=plugin-*",
     "test": "cross-env CI=true lerna run test -- --coverage",
     "create-plugin": "backstage-cli create-plugin",
+    "create-app": "backstage-cli create-app",
     "lint": "lerna run lint"
   },
   "workspaces": {
